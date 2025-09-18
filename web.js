@@ -17,27 +17,58 @@
 const LAYOUT_CONFIG_KEY = 'layoutConfig';
 
 const initialProgram =
-`#include <canvas.h>
-#include <stdint.h>
-
-const int w = 1000;
-const int h = 800;
-Canvas c{w, h};
-ImageData image{w, h};
+`#include <bits/stdc++.h>
+using namespace std;
 
 int main() {
-    for (int y = 0; y < h; ++y) {
-        for (int x = 0; x < w; ++x) {
-            image.data[y * w + x] = RGB(x | y, 0, 0);
-        }
-    }
-    image.commit();
-    c.putImageData(image, 0, 0);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    const char* msg = "x | y";
-    c.setFillStyle("white");
-    c.setFont("bold 200px sans");
-    c.fillText(msg, (w - c.measureText(msg)) / 2, (h + 100) / 2);
+    // Test vector, sort, unique
+    vector<int> v = {5, 1, 2, 2, 3, 9, 5};
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+
+    cout << "Vector contents:";
+    for (int x : v) cout << " " << x;
+    cout << "\n";
+
+    // Test map + string
+    map<string, int> freq;
+    string s = "abracadabra";
+    for (char c : s) freq[string(1, c)]++;
+
+    cout << "Map contents:\n";
+    for (auto &p : freq) {
+        cout << p.first << " -> " << p.second << "\n";
+    }
+
+    // Test set + lower_bound
+    set<int> st(v.begin(), v.end());
+    auto it = st.lower_bound(4);
+    if (it != st.end()) cout << "First element >= 4: " << *it << "\n";
+
+    // Test queue + stack
+    queue<int> q;
+    stack<int> stck;
+    for (int i = 1; i <= 5; i++) { q.push(i); stck.push(i); }
+
+    cout << "Queue front: " << q.front() << ", back: " << q.back() << "\n";
+    cout << "Stack top: " << stck.top() << "\n";
+
+    // Test random + chrono
+    mt19937 rng(123);
+    uniform_int_distribution<int> dist(1, 100);
+    cout << "Random number: " << dist(rng) << "\n";
+
+    auto start = chrono::high_resolution_clock::now();
+    long long sum = 0;
+    for (int i = 0; i < 1e5; i++) sum += i;
+    auto end = chrono::high_resolution_clock::now();
+    cout << "Sum: " << sum << ", elapsed ms: "
+         << chrono::duration_cast<chrono::milliseconds>(end - start).count() << "\n";
+
+    return 0;
 }
 `;
 
