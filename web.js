@@ -17,7 +17,7 @@
 const LAYOUT_CONFIG_KEY = 'layoutConfig';
 
 const initialProgram =
-`#include <stdc++.h>
+`#include <stdc.h>
 using namespace std;
 
 int main() {
