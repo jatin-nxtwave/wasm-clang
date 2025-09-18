@@ -17,7 +17,7 @@
 const LAYOUT_CONFIG_KEY = 'layoutConfig';
 
 const initialProgram =
-`#include <canva.h>
+`#include <canvas.h>
 using namespace std;
 
 int main() {
